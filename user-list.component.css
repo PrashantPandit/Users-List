@@ -1,0 +1,121 @@
+.table-heading {
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+table {
+    width: 100% !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+th {
+    background-color: #00a99d;
+    color: #fff;
+}
+
+.cursor-class {
+    cursor: pointer !important;
+}
+
+.icon-style {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #676767;
+}
+
+.no-button {
+    border: 1px solid #00a99d;
+    color: #00a99d;
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.yes-button {
+    border: 1px solid #00a99d;
+    color: #ffffff;
+    background-color: #00a99d;
+    border-radius: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.right-align {
+    text-align: right !important;
+}
+
+.delete-txt {
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.close-icon {
+    font-size: 15px !important;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding: 0;
+    table-layout: fixed;
+}
+
+table thead {
+    color: #ffffff;
+    background-color: #08C85C;
+    text-align: left;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table th {
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    table caption {
+        font-size: 1.3em;
+    }
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 0.9em;
+        text-align: right;
+    }
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
+    .width-95 {
+        width: 95%;
+    }
+}

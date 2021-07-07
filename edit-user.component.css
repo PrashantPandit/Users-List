@@ -1,0 +1,29 @@
+.yes-button {
+    border: 1px solid #00a99d;
+    color: #ffffff;
+    background-color: #00a99d;
+    border-radius: 1rem;
+}
+
+.right-align {
+    text-align: right !important;
+}
+
+.delete-txt {
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.close-icon {
+    font-size: 15px !important;
+    cursor: pointer;
+}
+
+.form-width {
+    width: 100%;
+}
+
+.font-style {
+    font-family: 'Poppins', sans-serif;
+}

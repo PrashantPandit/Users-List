@@ -1,0 +1,43 @@
+<div fxLayout="column" fxLayoutGap="1rem">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="delete-txt font-style">Edit User</span>
+        <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div [formGroup]="editFormGroup" fxLayout="column">
+        <mat-form-field class="form-width font-style">
+            <input type="text" matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="form-width font-style">
+            <input type="text" matInput placeholder="Emal Address" formControlName="email">
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutGap="1rem">
+            <div fxFlex="15">Gender</div>
+            <div fxFlex="34">
+                <mat-radio-group formControlName="gender" fxLayoutGap="1rem" class="font-style">
+                    <mat-radio-button *ngFor="let gend of genders" [value]="gend.value">
+                        {{gend.name}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+
+        <mat-form-field class="form-field font-style">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="form-field font-style">
+            <textarea matInput rows="5" formControlName="address" placeholder="Address"></textarea>
+        </mat-form-field>
+    </div>
+
+    <div fxLayuotAlign="end center" fxLayoutGap="0.5rem" class="right-align font-style">
+        <button mat-raised-button class="yes-button font-style" (click)="editUser()">Submit</button>
+    </div>
+</div>

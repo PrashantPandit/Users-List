@@ -1,0 +1,119 @@
+<mat-card fxHide.lt-md>
+    <table mat-table *ngIf="dummyUserList.length> 0" [dataSource]="dataSource" matSort class="user-table" multiTemplateDataRows>
+
+        <ng-container matColumnDef="srno">
+            <th mat-header-cell *matHeaderCellDef class="table-heading" style="width: 3rem!important; padding: 0 1rem; text-align: center;">
+                <mat-checkbox #ref (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element" style="padding: 0 0rem; text-align: center;">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element.uId) : null;" [checked]="selection.isSelected(element.uId)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="table-heading">Name</th>
+            <td mat-cell *matCellDef="let element" class="table-data">
+                <div fxLayout="column">
+                    <span>{{element.name}}</span>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef class="table-heading">Email</th>
+            <td mat-cell *matCellDef="let element" class="table-data">
+                <span>{{element.email}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef class="table-heading">Gender</th>
+            <td mat-cell *matCellDef="let element" class="table-data-number">
+                <span>{{element.gender}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef class="table-heading">Address</th>
+            <td mat-cell *matCellDef="let element" class="table-data-number">
+                <span>{{element.address}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef class="table-heading">Date of Birth</th>
+            <td mat-cell *matCellDef="let element" class="table-data-number">
+                <span>{{element.dob | date: 'yyyy-MM-dd'}}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operations">
+            <th mat-header-cell *matHeaderCellDef class="table-heading"></th>
+            <td mat-cell *matCellDef="let element" class="table-data-number">
+                <mat-icon mat-Tooltip="Edit user" class="cursor-class icon-style" (click)="editUser(element)">edit</mat-icon>
+                <mat-icon mat-Tooltip="Delete user" (click)="confirmDelete(deleteUserPopUp, element)" class="cursor-class icon-style">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <div [hidden]="dummyUserList.length=== 0 || !dummyUserList?.length">
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" #paginator [pageIndex]="listPageIndex" [pageSize]="listPageSize" [length]="dummyUserList.length" (page)="pageChanged($event)"></mat-paginator>
+    </div>
+</mat-card>
+
+<ng-template #deleteUserPopUp>
+    <div fxLayout="column" fxLayoutGap="1rem">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="delete-txt">Delete User</span>
+            <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div fxLayuotAlign="start start" style="font-size: 1rem; margin-bottom: 2rem; width: 80%; margin: 0 auto;">
+            Are you sure you want to delete {{userToDelete.name}}?
+        </div>
+
+        <div fxLayuotAlign="end center" fxLayoutGap="0.5rem" class="right-align">
+            <button mat-raised-button class="no-button" (click)="close()">No</button>
+            <button mat-raised-button class="yes-button" (click)="deleteUser(userToDelete.uId)">Yes</button>
+        </div>
+    </div>
+</ng-template>
+
+<mat-card fxHide.gt-sm>
+    <table class="table">
+        <thead>
+            <th class="width-14">Name</th>
+            <th class="width-17">Email</th>
+            <th class="width-13">Gender</th>
+            <th class="width-30">Address</th>
+            <th>Date of Birth</th>
+        </thead>
+        <tbody *ngFor="let user of dummyUserList; let i = index;">
+            <tr>
+                <td style="word-break: break-all" scope="row" data-label="Name" class="width-95">
+                    {{user.name}}</td>
+
+                <td scope="row" data-label="Email" style="font-size: 1rem; word-break: break-all;" class="width-95">{{user.email}}</td>
+
+                <td scope="row" data-label="Gender" style="word-break: break-all" class="width-95">
+                    {{user.gender}}</td>
+
+                <td scope="row" data-label="Address" class="width-95">{{user.address}}</td>
+
+                <td scope="row" data-label="Bate of Birth" class="width-95">{{user.dob | date:'yyyy/MM/dd'}}</td>
+
+                <td scope="row" data-label="Actions" class="width-95">
+                    <mat-icon mat-Tooltip="Edit user" class="cursor-class icon-style" (click)="editUser(user)">edit</mat-icon>
+                    <mat-icon mat-Tooltip="Delete user" (click)="confirmDelete(deleteUserPopUp, user)" class="cursor-class icon-style">delete</mat-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</mat-card>
